@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { clsx } from 'clsx';
-
 import { defaultArticleState } from '@/constants/articleProps.ts';
+import { useState } from 'react';
+
 import { ArticleParamsForm } from '@components/article-params-form';
 
 import { Article } from '../article/Article';
@@ -17,7 +16,7 @@ export const App = (): React.JSX.Element => {
 
   return (
     <main
-      className={clsx(styles.main)}
+      className={styles.main}
       style={
         {
           '--font-family': articleState.fontFamilyOption.value,

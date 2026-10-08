@@ -1,14 +1,5 @@
-import { useRef, useState } from 'react';
 import { clsx } from 'clsx';
-
-import { ArrowButton } from 'src/ui/arrow-button';
-import { Button } from 'src/ui/button';
-import { RadioGroup } from 'src/ui/radio-group';
-import { Select } from 'src/ui/select';
-import { Separator } from 'src/ui/separator';
-import { Text } from 'src/ui/text';
-import { useOutsideClickClose } from 'src/ui/select/hooks/useOutsideClickClose';
-
+import { useRef, useState } from 'react';
 import {
   backgroundColors,
   contentWidthArr,
@@ -17,9 +8,16 @@ import {
   fontFamilyOptions,
   fontSizeOptions,
 } from 'src/constants/articleProps';
+import { ArrowButton } from 'src/ui/arrow-button';
+import { Button } from 'src/ui/button';
+import { RadioGroup } from 'src/ui/radio-group';
+import { Select } from 'src/ui/select';
+import { useOutsideClickClose } from 'src/ui/select/hooks/useOutsideClickClose';
+import { Separator } from 'src/ui/separator';
+import { Text } from 'src/ui/text';
 
-import type { ArticleStateType, OptionType } from 'src/constants/articleProps';
 import type { FormEvent } from 'react';
+import type { ArticleStateType, OptionType } from 'src/constants/articleProps';
 
 import styles from './ArticleParamsForm.module.scss';
 
@@ -71,7 +69,8 @@ export const ArticleParamsForm = ({
     onApply(formState);
   };
 
-  const handleReset = (): void => {
+  const handleReset = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
     setFormState(defaultArticleState);
     onApply(defaultArticleState);
   };
@@ -84,11 +83,7 @@ export const ArticleParamsForm = ({
           [styles.container_open]: isOpen,
         })}
       >
-        <form
-          className={styles.form}
-          onSubmit={handleSubmit}
-          onReset={handleReset}
-        >
+        <form className={styles.form} onSubmit={handleSubmit} onReset={handleReset}>
           <Text as="h2" size={31} weight={800} uppercase>
             Задайте параметры
           </Text>
